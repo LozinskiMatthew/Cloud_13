@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER_FILE: /run/secrets/db_user
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    ports:
+      - "3307:3306"
+    secrets:
+      - db_root_password
+      - db_user
+      - db_password
+
+secrets:
+  db_root_password:
+    file: ./secrets/db_root_password
+  db_user:
+    file: ./secrets/db_user
+  db_password:
+    file: ./secrets/db_password
